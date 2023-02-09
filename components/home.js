@@ -1,9 +1,9 @@
 import { FontAwesome5 } from '@expo/vector-icons';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Image, FlatList } from "react-native";
+import { StyleSheet, View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 
-const Home = () => {
+const Home = ({navigation}) => {
 
     const idArray = [];
 
@@ -25,6 +25,10 @@ const Home = () => {
                 <FlatList
                     data={data}
                     renderItem={({item})=>(
+                        <TouchableOpacity onPress={()=>navigation.navigate('Details', item, {
+                            name: item.origin.name,
+                            url: item.origin.url
+                          })}>
                         <View style={styles.content}>
                             <Image
                                 source={{uri:`${item.image}`}}
@@ -38,8 +42,9 @@ const Home = () => {
                             <Text style={styles.text}>{item.name}</Text>
                             <FontAwesome5 name="arrow-right" size={24} color="black" />
                         </View>
+                        </TouchableOpacity>
                     )}
-                />
+                />                
             </View>
         </View>
      );
