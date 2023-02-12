@@ -2,6 +2,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import { useFonts } from '@use-expo/font';
 
 const Home = ({navigation}) => {
 
@@ -19,16 +20,22 @@ const Home = ({navigation}) => {
         })
     },[])
 
+    let [fontLoaded] = useFonts({
+        'sty':require('./style.ttf')
+    })
+    
+        if (!fontLoaded) {
+            return <Text>Loading...</Text>;
+        }
+    
+
     return ( 
         <View style={styles.container}>
             <View >
                 <FlatList
                     data={data}
                     renderItem={({item})=>(
-                        <TouchableOpacity onPress={()=>navigation.navigate('Details', item, {
-                            name: item.origin.name,
-                            url: item.origin.url
-                          })}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Details', item)}>
                         <View style={styles.content}>
                             <Image
                                 source={{uri:`${item.image}`}}
@@ -68,6 +75,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     text:{
+        fontFamily:'sty',
         fontSize:15
     }
 })

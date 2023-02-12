@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rick_and_morty",
+    "name": "rick & morty",
     "slug": "rick_and_morty",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.tonny2wo6ix5ive.rick_and_morty"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ae3dd50b-1633-48cc-bbee-ccc40fe38fc2"
+      }
     }
   }
 }
